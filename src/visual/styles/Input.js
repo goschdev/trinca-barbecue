@@ -14,4 +14,5 @@ export const Input = styled.input`
   color: ${COLORS.dark};
   border: none;
   outline-color: ${COLORS.goldLight};
+  resize: none;
 `;

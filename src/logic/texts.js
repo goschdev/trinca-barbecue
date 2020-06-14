@@ -18,5 +18,37 @@ export const TEXTS = {
   member: {
     markAsPaid: 'Marcar como pago',
     markAsNotPaid: 'Marcar como não pago',
-  }
+  },
+  createBarbecue: {
+    title: 'Adicionar Churras',
+    form: {
+      title: [
+        'title',
+        'Título',
+        'Digite o título',
+      ],
+      budget: [
+        'suggestedBudget',
+        'Orçamento sugerido',
+        'Ex.: 20',
+      ],
+      datetime: [
+        'date',
+        'Data e horário',
+        'Ex.: 16/06/2020 às 20h',
+      ],
+      description: [
+        'description',
+        'Descrição',
+        'Digite uma descrição',
+      ],
+      notes: [
+        'notes',
+        'Observações adicionais',
+        'Digite uma observação',
+      ],
+      submit: 'Adicionar',
+      cancel: 'Cancelar',
+    },
+  },
 };
