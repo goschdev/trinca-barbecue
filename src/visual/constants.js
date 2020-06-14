@@ -8,3 +8,16 @@ export const COLORS = {
   gold: '#998220',
   goldLight: '#E5C231',
 };
+
+export const RESOLUTIONS = {
+  mobile: {
+    max: "736px",
+  },
+  tablet: {
+    min: "737px",
+    max: "1024px",
+  },
+  desktop: {
+    min: "1025px",
+  },
+};
