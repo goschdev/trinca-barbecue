@@ -1,6 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-import { COLORS } from 'visual/constants';
+import styled from 'styled-components';
 
 export const Container = styled.main`
   position: relative;
@@ -14,10 +12,4 @@ export const Form = styled.form`
 
 export const FormItem = styled.div`
   display: grid;
-`;
-
-export const SetBodyBackground = createGlobalStyle`
-  body {
-    background-color: ${COLORS.primary};
-  }
 `;

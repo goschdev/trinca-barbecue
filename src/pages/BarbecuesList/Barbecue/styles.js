@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card } from 'visual/styles/Card';
 import { pxToRem } from 'logic/pxToRem';
 import { COLORS } from 'visual/constants';
+import { Link } from 'react-router-dom';
 
 export const Container = styled(Card)``;
 
@@ -12,11 +13,14 @@ export const Header = styled.header`
 
 export const Title = styled.h3`
   order: 2;
-  font-style: normal;
-  font-weight: bold;
-  font-size: ${pxToRem(21)};
-  line-height: ${pxToRem(25)};
-  color: ${COLORS.dark};
+
+  > a {
+    font-style: normal;
+    font-weight: bold;
+    font-size: ${pxToRem(21)};
+    line-height: ${pxToRem(25)};
+    color: ${COLORS.dark};
+  }
 `;
 
 export const Date = styled.span`
@@ -26,13 +30,15 @@ export const Date = styled.span`
   font-size: ${pxToRem(28)};
   line-height: ${pxToRem(33)};
   color: ${COLORS.black};
-  margin-bottom: ${pxToRem(8)};
+  padding-bottom: ${pxToRem(8)};
 `;
 
 export const Footer = styled.footer`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-top: ${pxToRem(50)};
+  a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: ${pxToRem(50)};
+  }
 `;
 
 export const FooterItem = styled.div`
@@ -53,4 +59,9 @@ export const FooterItemText = styled.span`
   font-size: ${pxToRem(21)};
   line-height: ${pxToRem(25)};
   color: ${COLORS.black};
+`;
+
+export const LinkElement = styled(Link)`
+  text-decoration: none;
+  display: block;
 `;

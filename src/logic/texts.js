@@ -11,4 +11,8 @@ export const TEXTS = {
     title: 'Churrascos',
     create: 'Adicionar Churras',
   },
+  footer: {
+    title: 'Trinca',
+    imgAlt: 'Logo da Trinca',
+  },
 };

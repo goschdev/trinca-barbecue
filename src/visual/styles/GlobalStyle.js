@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 import { COLORS } from 'visual/constants';
 import { Raleway } from 'visual/fonts';
@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
   body, html {
     min-height: 100vh;
     background-color: ${COLORS.greyLight};
+
+    ${p => p.primaryBackground && css`
+      background-color: ${COLORS.primary};
+    `}
   }
   * {
     margin: 0;

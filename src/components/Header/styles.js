@@ -4,20 +4,20 @@ import { pxToRem } from 'logic/pxToRem';
 import { COLORS } from 'visual/constants';
 
 import pattern from 'assets/img/bg-pattern.svg';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: ${COLORS.primary};
-  padding: 70px 0 100px 0;
   background-image: url(${pattern});
   position: relative;
   z-index: 10;
   margin-bottom: -45px;
 
   ${p => p.isAuth && css`
-    padding-bottom: 225px;
+    padding-bottom: 125px;
     margin-bottom: -100px;
 
     &:after {
@@ -36,10 +36,20 @@ export const Container = styled.header`
 `;
 
 export const Title = styled.h1`
-  font-style: normal;
-  font-weight: 800;
-  font-size: ${pxToRem(32)};
-  line-height: ${pxToRem(38)};
-  color: ${COLORS.black};
-  cursor: default;
+  width: 100%;
+  text-align: center;
+
+  a {
+    font-style: normal;
+    font-weight: 800;
+    font-size: ${pxToRem(32)};
+    line-height: ${pxToRem(38)};
+    color: ${COLORS.black};
+    padding: 70px 0 100px 0;
+    display: block;
+  }
+`;
+
+export const LinkElement = styled(Link)`
+  text-decoration: none;
 `;

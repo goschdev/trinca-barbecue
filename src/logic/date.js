@@ -12,3 +12,7 @@ export function formatDateLess(timestamp) {
 
   return formated;
 }
+
+export function formatDateTime(timestamp) {
+  return timestamp;
+}

@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { GlobalStyle } from 'visual/styles/GlobalStyle';
 import { Routes } from 'components/Routes';
 import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
+import { RenderGlobalStyle } from 'components/RenderGlobalStyle';
 
 export function App() {
   return (
     <>
-      <GlobalStyle />
       <Router>
+        <RenderGlobalStyle />
         <Header />
         <Routes />
+        <Footer />
       </Router>
     </>
   );

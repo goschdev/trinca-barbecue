@@ -4,7 +4,7 @@ import { TEXTS } from 'logic/texts';
 import { useLocation } from 'react-router-dom';
 import { ROUTES } from 'logic/constants';
 
-import { Container, Title } from './styles';
+import { Container, Title, LinkElement } from './styles';
 
 export function Header() {
   const { pathname } = useLocation();
@@ -12,7 +12,9 @@ export function Header() {
 
   return (
     <Container isAuth={isAuth}>
-      <Title>{TEXTS.title}</Title>
+      <Title>
+        <LinkElement to={ROUTES.MAIN}>{TEXTS.title}</LinkElement>
+      </Title>
     </Container>
   );
 }

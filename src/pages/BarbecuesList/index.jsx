@@ -29,6 +29,7 @@ export function BarbecuesList() {
           {barbecues.map(({ title, date, members, id }) => (
             <Barbecue
               key={id}
+              id={id}
               title={title}
               members={members.length}
               budget={membersBudget(members)}

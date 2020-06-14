@@ -6,12 +6,11 @@ import { TEXTS } from 'logic/texts';
 import { Wrapper } from 'visual/styles/Wrapper';
 import { Button } from 'visual/styles/Button';
 
-import { Container, Form, FormItem, SetBodyBackground } from './styles';
+import { Container, Form, FormItem } from './styles';
 
 export function Auth() {
   return (
     <Container>
-      <SetBodyBackground />
       <Wrapper>
         <Form>
           <FormItem>
