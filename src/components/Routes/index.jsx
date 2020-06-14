@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { ROUTES } from 'logic/requests/constants';
+import { ROUTES } from 'logic/constants';
 import { BarbercuesList } from 'pages/BarbercuesList';
 
 export function Routes() {
