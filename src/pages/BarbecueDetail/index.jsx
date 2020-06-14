@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { Wrapper } from 'visual/styles/Wrapper';
-import { Container, Content } from './styles';
-import { Header } from './Header';
+
+import { useParams } from 'react-router-dom';
+import { getBarbecue } from 'logic/requests/barbecue';
+import { Container } from './styles';
+import { Content } from './Content';
 
 export function BarbecueDetail() {
+  const { id } = useParams();
+  const [barbecue, setBarbecue] = useState({});
+  const [loaded, setLoaded] = useState(false);
+
+  const fetch = useCallback(async () => {
+    const { data } = await getBarbecue(id);
+    setBarbecue(data);
+    setLoaded(true);
+  }, [id]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
+
   return (
     <Container>
-      <Wrapper>
-        <Content>
-          <Header
-            title="Níver do Gui"
-            budget={280}
-            members={15}
-            date="2020-07-25T10:26:23.474Z"
-          />
-        </Content>
-      </Wrapper>
+      <Wrapper>{loaded && <Content data={barbecue} />}</Wrapper>
     </Container>
   );
 }

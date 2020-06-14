@@ -15,4 +15,8 @@ export const TEXTS = {
     title: 'Trinca',
     imgAlt: 'Logo da Trinca',
   },
+  member: {
+    markAsPaid: 'Marcar como pago',
+    markAsNotPaid: 'Marcar como não pago',
+  }
 };

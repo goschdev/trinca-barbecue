@@ -7,3 +7,7 @@ export async function getBarbecues() {
     }
   });
 }
+
+export async function getBarbecue(id) {
+  return await API().get(`/barbecue/${id}`);
+}
