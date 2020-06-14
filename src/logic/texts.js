@@ -7,7 +7,7 @@ export const TEXTS = {
     passwordPlaceholder: 'senha',
     submit: 'Entrar',
   },
-  barbercuesList: {
+  barbecuesList: {
     title: 'Churrascos',
   },
 };

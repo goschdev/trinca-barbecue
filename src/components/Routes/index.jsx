@@ -2,14 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { ROUTES } from 'logic/constants';
-import { BarbercuesList } from 'pages/BarbercuesList';
+import { BarbecuesList } from 'pages/BarbecuesList';
 import { Auth } from 'pages/Auth';
 
 export function Routes() {
   return (
     <Switch>
       <Route path={ROUTES.MAIN} exact>
-        <BarbercuesList />
+        <BarbecuesList />
       </Route>
       <Route path={ROUTES.AUTH} exact>
         <Auth />

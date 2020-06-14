@@ -15,7 +15,7 @@ import {
   FooterItemText,
 } from './styles';
 
-export function Barbercue({ date, title, members, budget }) {
+export function Barbecue({ date, title, members, budget }) {
   return (
     <Container as="article">
       <Header>
@@ -29,18 +29,18 @@ export function Barbercue({ date, title, members, budget }) {
         </FooterItem>
         <FooterItem>
           <Icon src={budgetIcon} aria-hidden />
-          <FooterItemText>{budget}</FooterItemText>
+          <FooterItemText>{`R$${budget}`}</FooterItemText>
         </FooterItem>
       </Footer>
     </Container>
   );
 }
 
-Barbercue.propTypes = {
+Barbecue.propTypes = {
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   members: PropTypes.number.isRequired,
   budget: PropTypes.number.isRequired,
 };
 
-export default Barbercue;
+export default Barbecue;
