@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { formatDateLess } from 'logic/date';
+import { ROUTES } from 'logic/constants';
+import { InfoWithIcon } from 'components/InfoWithIcon';
+
 import budgetIcon from 'assets/img/icon-money.svg';
 import membersIcon from 'assets/img/icon-people.svg';
-import { formatDateLess } from 'logic/date';
+
 import {
   Container,
   Header,
@@ -11,11 +15,8 @@ import {
   Title,
   Date,
   FooterItem,
-  Icon,
-  FooterItemText,
   LinkElement,
 } from './styles';
-import { ROUTES } from 'logic/constants';
 
 export function Barbecue({ date, title, members, budget, id }) {
   function link() {
@@ -35,12 +36,10 @@ export function Barbecue({ date, title, members, budget, id }) {
       <Footer>
         <LinkElement to={link()} title={title}>
           <FooterItem>
-            <Icon src={membersIcon} aria-hidden />
-            <FooterItemText>{members}</FooterItemText>
+            <InfoWithIcon icon={membersIcon} text={members} />
           </FooterItem>
           <FooterItem>
-            <Icon src={budgetIcon} aria-hidden />
-            <FooterItemText>{`R$${budget}`}</FooterItemText>
+            <InfoWithIcon icon={budgetIcon} text={`R$${budget}`} />
           </FooterItem>
         </LinkElement>
       </Footer>

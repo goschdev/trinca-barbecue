@@ -1,18 +1,15 @@
-function addZeroBefore(value) {
-  if (value >= 10) return value;
-  return `0${value}`;
-}
+import moment from 'moment';
+
+import { DATES } from 'logic/constants';
 
 export function formatDateLess(timestamp) {
-  const date = new Date(timestamp);
-  const day = addZeroBefore(date.getDate());
-  const month = addZeroBefore(date.getMonth() + 1);
-
-  const formated = `${day}/${month}`;
+  const formated = moment(timestamp).format(DATES.dateLess);
 
   return formated;
 }
 
 export function formatDateTime(timestamp) {
-  return timestamp;
+  const formated = moment(timestamp).format(DATES.fullDatetime)
+  
+  return formated;
 }

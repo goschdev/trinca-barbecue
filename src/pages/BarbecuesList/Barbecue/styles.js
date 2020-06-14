@@ -43,22 +43,10 @@ export const Footer = styled.footer`
 
 export const FooterItem = styled.div`
   display: flex;
-  align-items: center;
 
   &:last-child {
     justify-content: flex-end;
   }
-`;
-
-export const Icon = styled.img``;
-
-export const FooterItemText = styled.span`
-  margin-left: ${pxToRem(10)};
-  font-style: normal;
-  font-weight: 500;
-  font-size: ${pxToRem(21)};
-  line-height: ${pxToRem(25)};
-  color: ${COLORS.black};
 `;
 
 export const LinkElement = styled(Link)`

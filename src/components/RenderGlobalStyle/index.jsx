@@ -8,9 +8,7 @@ export function RenderGlobalStyle() {
   const { pathname } = useLocation();
   const isAuth = pathname === ROUTES.AUTH;
 
-  return (
-    <GlobalStyle primaryBackground={isAuth} />
-  );
+  return <GlobalStyle primaryBackground={isAuth} />;
 }
 
 export default RenderGlobalStyle;
