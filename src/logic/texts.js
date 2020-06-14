@@ -21,7 +21,7 @@ export const TEXTS = {
   },
   createBarbecue: {
     title: 'Adicionar Churras',
-    form: {
+    formText: {
       title: [
         'title',
         'Título',

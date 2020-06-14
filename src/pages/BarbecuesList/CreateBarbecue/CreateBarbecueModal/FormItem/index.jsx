@@ -13,6 +13,7 @@ export function FormItem({
   as,
   rows,
   required,
+  min,
 }) {
   const [id, title, placeholder] = dictionary;
   return (
@@ -27,6 +28,7 @@ export function FormItem({
         rows={rows}
         onChange={({ target }) => onChange(id, target.value)}
         required={required}
+        min={min}
       />
     </ModalFormItem>
   );
@@ -40,6 +42,7 @@ FormItem.propTypes = {
   as: PropTypes.string,
   rows: PropTypes.string,
   required: PropTypes.bool,
+  min: PropTypes.string,
 };
 
 FormItem.defaultProps = {
@@ -48,6 +51,7 @@ FormItem.defaultProps = {
   rows: '',
   value: '',
   required: false,
+  min: '',
 };
 
 export default FormItem;
