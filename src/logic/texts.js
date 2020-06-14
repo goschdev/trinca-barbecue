@@ -9,5 +9,6 @@ export const TEXTS = {
   },
   barbecuesList: {
     title: 'Churrascos',
+    create: 'Adicionar Churras',
   },
 };

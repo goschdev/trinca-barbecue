@@ -5,7 +5,7 @@ function addZeroBefore(value) {
 
 export function formatDateLess(timestamp) {
   const date = new Date(timestamp);
-  const day = date.getDate();
+  const day = addZeroBefore(date.getDate());
   const month = addZeroBefore(date.getMonth() + 1);
 
   const formated = `${day}/${month}`;
