@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 
 import { Modal } from 'components/Modal';
 import { ModalTitle } from 'visual/styles/ModalTitle';
@@ -14,68 +15,60 @@ import { FormItem } from 'components/FormItem';
 import { Form } from './styles';
 
 export function CreateBarbecueModal({ opened, closeModal }) {
-  const [form, setForm] = useState({});
+  const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [id, setId] = useState();
 
-  function updateForm(key, value) {
-    const newForm = { ...form };
-    newForm[key] = value;
-    setForm(newForm);
-  }
-
-  async function submit(event) {
-    event.preventDefault();
-
+  async function submit(values) {
     setLoading(true);
-    const { data } = await createBarbecue(form);
+    const { data } = await createBarbecue(values);
     setId(data.id);
     setLoading(false);
     setSuccess(true);
   }
 
+  function cancel(event) {
+    event.preventDefault();
+    closeModal();
+  }
+
+  function detailLink() {
+    return ROUTES.BARBECUE_DETAIL.replace(':id', id);
+  }
+
   useEffect(() => {
-    if (!opened) setForm({});
-  }, [opened]);
+    if (!opened) reset();
+  }, [opened, reset]);
 
   const { formText, title } = TEXTS.createBarbecue;
 
   return (
     <Modal opened={opened}>
       <ModalTitle>{title}</ModalTitle>
-      <Form onSubmit={submit}>
-        <FormItem
-          dictionary={formText.title}
-          value={form[formText.title[0]]}
-          onChange={updateForm}
-          required
-        />
+      <Form onSubmit={handleSubmit(submit)}>
+        <FormItem dictionary={formText.title} internalRef={register} required />
         <FormItem
           dictionary={formText.budget}
-          value={form[formText.budget[0]]}
-          onChange={updateForm}
+          internalRef={register}
           type="number"
           min="0"
         />
         <FormItem
           dictionary={formText.datetime}
-          value={form[formText.datetime[0]]}
-          onChange={updateForm}
+          internalRef={register}
           type="datetime-local"
           required
         />
         <FormItem
           dictionary={formText.description}
-          value={form[formText.description[0]]}
-          onChange={updateForm}
+          internalRef={register}
           as="textarea"
           rows="3"
         />
         <FormItem
           dictionary={formText.notes}
-          value={form[formText.notes[0]]}
-          onChange={updateForm}
+          internalRef={register}
           as="textarea"
           rows="3"
         />
@@ -83,9 +76,9 @@ export function CreateBarbecueModal({ opened, closeModal }) {
           <Button type="submit" disabled={loading ? 'disabled' : ''}>
             {formText.submit}
           </Button>
-          <Button onClick={closeModal}>{formText.cancel}</Button>
+          <Button onClick={cancel}>{formText.cancel}</Button>
         </ModalFormButtons>
-        {success && <Redirect to={ROUTES.BARBECUE_DETAIL.replace(':id', id)} />}
+        {success && <Redirect to={detailLink()} />}
       </Form>
     </Modal>
   );
