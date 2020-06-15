@@ -1,8 +1,9 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { TEXTS } from 'logic/texts';
-import { useLocation } from 'react-router-dom';
 import { ROUTES } from 'logic/constants';
+import { Wrapper } from 'visual/styles/Wrapper';
 
 import { Container, Title, LinkElement } from './styles';
 
@@ -12,10 +13,12 @@ export function Header() {
 
   return (
     <Container isAuth={isAuth}>
-      <Title>
-        {isAuth && <>{TEXTS.title}</>}
-        {!isAuth && <LinkElement to={ROUTES.MAIN}>{TEXTS.title}</LinkElement>}
-      </Title>
+      <Wrapper>
+        <Title>
+          {isAuth && <>{TEXTS.title}</>}
+          {!isAuth && <LinkElement to={ROUTES.MAIN}>{TEXTS.title}</LinkElement>}
+        </Title>
+      </Wrapper>
     </Container>
   );
 }
