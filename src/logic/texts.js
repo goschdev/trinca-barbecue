@@ -11,6 +11,9 @@ export const TEXTS = {
     title: 'Churrascos',
     create: 'Adicionar Churras',
   },
+  barbecueDetail: {
+    createMember: 'Adicionar membro',
+  },
   footer: {
     title: 'Trinca',
     imgAlt: 'Logo da Trinca',
@@ -18,6 +21,32 @@ export const TEXTS = {
   member: {
     markAsPaid: 'Marcar como pago',
     markAsNotPaid: 'Marcar como não pago',
+  },
+  createMember: {
+    title: 'Adicionar membro',
+    formText: {
+      name: [
+        'name',
+        'Nome',
+        'Digite o nome',
+      ],
+      budget: [
+        'budget',
+        'Orçamento',
+        'Ex.: 20',
+      ],
+      needDrink: [
+        'needDrink',
+        'Bebida inclusa',
+      ],
+      needDrinkOptions: [
+        { key: 'true', value: 'Sim' },
+        { key: 'false', value: 'Não' },
+      ],
+      submit: 'Adicionar',
+      cancel: 'Cancelar',
+      update: 'Salvar alterações',
+    }
   },
   createBarbecue: {
     title: 'Adicionar Churras',

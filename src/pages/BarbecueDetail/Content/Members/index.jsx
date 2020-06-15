@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from './styles';
 import { Member } from './Member';
+import { CreateMember } from './CreateMember';
+
+import { Container } from './styles';
 
 export function Members({ data }) {
   return (
@@ -10,6 +12,7 @@ export function Members({ data }) {
       {data.map((member) => (
         <Member key={member.id} data={member} />
       ))}
+      <CreateMember />
     </Container>
   );
 }

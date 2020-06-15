@@ -25,3 +25,9 @@ export async function createBarbecue({title, date, suggestedBudget, description,
     title, date, suggestedBudget: +suggestedBudget, description, notes
   });
 }
+
+export async function createMember({barbecue, name, budget, needDrink}) {
+  return await API().post(`/barbecue/${barbecue}/member`, {
+    name, budget: +budget, needDrink
+  });
+}

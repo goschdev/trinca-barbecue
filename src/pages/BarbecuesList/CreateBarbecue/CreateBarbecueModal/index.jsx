@@ -10,7 +10,7 @@ import { Button } from 'visual/styles/Button';
 import { createBarbecue } from 'logic/requests/barbecue';
 import { Redirect } from 'react-router-dom';
 import { ROUTES } from 'logic/constants';
-import { FormItem } from './FormItem';
+import { FormItem } from 'components/FormItem';
 import { Form } from './styles';
 
 export function CreateBarbecueModal({ opened, closeModal }) {
