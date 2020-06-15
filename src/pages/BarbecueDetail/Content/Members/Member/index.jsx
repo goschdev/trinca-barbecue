@@ -18,7 +18,7 @@ export function Member({ data }) {
         )}
         <Name>{name}</Name>
       </LeftColumn>
-      <Budget>{`R$ ${budget}`}</Budget>
+      <Budget paid={paid}>{`R$ ${budget}`}</Budget>
     </Container>
   );
 }
@@ -29,7 +29,7 @@ Member.propTypes = {
     name: PropTypes.string,
     budget: PropTypes.number,
     paid: PropTypes.bool,
-    needDrink: PropTypes.bool,
+    needDrink: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   }).isRequired,
 };
 

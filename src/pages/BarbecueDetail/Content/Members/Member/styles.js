@@ -44,4 +44,8 @@ export const Name = styled.span`
   color: ${COLORS.dark};
 `;
 
-export const Budget = styled(Name)``;
+export const Budget = styled(Name)`
+  ${p => p.paid && css`
+    text-decoration: line-through;
+  `}
+`;

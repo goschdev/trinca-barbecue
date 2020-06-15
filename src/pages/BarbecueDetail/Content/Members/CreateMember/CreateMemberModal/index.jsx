@@ -8,7 +8,6 @@ import { TEXTS } from 'logic/texts';
 import { ModalTitle } from 'visual/styles/ModalTitle';
 import { ModalFormButtons } from 'visual/styles/ModalFormButtons';
 import { Button } from 'visual/styles/Button';
-import { createMember } from 'logic/requests/barbecue';
 import { BarbecueContext } from 'contexts/BarbecueContext';
 import { Form } from './styles';
 
@@ -17,9 +16,8 @@ const formDefault = {
 };
 
 export function CreateMemberModal({ opened, closeModal }) {
-  const { fetch } = useContext(BarbecueContext);
+  const { loaded, submitCreateMember } = useContext(BarbecueContext);
   const [form, setForm] = useState(formDefault);
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   function updateForm(key, value) {
@@ -31,10 +29,7 @@ export function CreateMemberModal({ opened, closeModal }) {
   async function submit(event) {
     event.preventDefault();
 
-    setLoading(true);
-    await createMember({ barbecue: id, ...form });
-    setLoading(false);
-    fetch(id);
+    submitCreateMember({ barbecue: id, ...form });
   }
 
   function cancel(event) {
@@ -75,7 +70,7 @@ export function CreateMemberModal({ opened, closeModal }) {
           required
         />
         <ModalFormButtons>
-          <Button disabled={loading ? 'disabled' : ''} type="submit">
+          <Button disabled={!loaded ? 'disabled' : ''} type="submit">
             {formText.submit}
           </Button>
           <Button onClick={cancel}>{formText.cancel}</Button>

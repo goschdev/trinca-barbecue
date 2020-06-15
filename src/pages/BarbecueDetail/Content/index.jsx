@@ -1,22 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { membersBudget } from 'logic/membersBudget';
 import { Wrapper } from 'visual/styles/Wrapper';
 import { BarbecueContext } from 'contexts/BarbecueContext';
-import { useParams } from 'react-router-dom';
 import { Header } from './Header';
 import { Members } from './Members';
 
 import { Container, Description } from './styles';
 
 export function Content() {
-  const { id } = useParams();
-  const { barbecue, loaded, fetch } = useContext(BarbecueContext);
+  const { barbecue, loaded } = useContext(BarbecueContext);
   const { members, date, title, description, notes } = barbecue;
-
-  useEffect(() => {
-    fetch(id);
-  }, [id]);
 
   return (
     <Wrapper>
