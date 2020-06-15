@@ -13,7 +13,8 @@ export function Header() {
   return (
     <Container isAuth={isAuth}>
       <Title>
-        <LinkElement to={ROUTES.MAIN}>{TEXTS.title}</LinkElement>
+        {isAuth && <>{TEXTS.title}</>}
+        {!isAuth && <LinkElement to={ROUTES.MAIN}>{TEXTS.title}</LinkElement>}
       </Title>
     </Container>
   );

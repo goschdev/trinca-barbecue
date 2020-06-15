@@ -38,14 +38,14 @@ export const Container = styled.header`
 export const Title = styled.h1`
   width: 100%;
   text-align: center;
+  padding: 70px 0 100px 0;
 
-  a {
+  &, a {
     font-style: normal;
-    font-weight: 800;
     font-size: ${pxToRem(32)};
     line-height: ${pxToRem(38)};
+    font-weight: 800;
     color: ${COLORS.black};
-    padding: 70px 0 100px 0;
     display: block;
   }
 `;
