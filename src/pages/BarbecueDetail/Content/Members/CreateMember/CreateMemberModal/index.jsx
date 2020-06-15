@@ -19,6 +19,7 @@ export function CreateMemberModal({ opened, closeModal }) {
 
   function submit(values) {
     submitCreateMember(values);
+    closeModal();
   }
 
   function cancel(event) {

@@ -38,9 +38,10 @@ export function BarbecueProvider({ children }) {
   }
 
   async function submitCreateMember(data) {
-    setLoaded(false);
+    setMembersLoading(true);
     await createMember({ barbecue: id, ...data });
-    fetch();
+    await fetchMembers();
+    setMembersLoading(false);
   }
 
   async function toggleMemberPaid(member, paid) {
