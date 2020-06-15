@@ -28,8 +28,8 @@ export function BarbecueProvider({ children }) {
 
   async function submitCreateMember(data) {
     setLoaded(false);
-    await createMember(data);
-    fetch(data.barbecue);
+    await createMember({ barbecue: id, ...data });
+    fetch();
   }
 
   useEffect(() => {

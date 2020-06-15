@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 
 import { Modal } from 'components/Modal';
 import { FormItem } from 'components/FormItem';
@@ -11,25 +11,13 @@ import { Button } from 'visual/styles/Button';
 import { BarbecueContext } from 'contexts/BarbecueContext';
 import { Form } from './styles';
 
-const formDefault = {
-  needDrink: 'true',
-};
-
 export function CreateMemberModal({ opened, closeModal }) {
+  const { register, handleSubmit, reset } = useForm();
+
   const { loaded, submitCreateMember } = useContext(BarbecueContext);
-  const [form, setForm] = useState(formDefault);
-  const { id } = useParams();
 
-  function updateForm(key, value) {
-    const newForm = { ...form };
-    newForm[key] = value;
-    setForm(newForm);
-  }
-
-  async function submit(event) {
-    event.preventDefault();
-
-    submitCreateMember({ barbecue: id, ...form });
+  function submit(values) {
+    submitCreateMember(values);
   }
 
   function cancel(event) {
@@ -37,33 +25,26 @@ export function CreateMemberModal({ opened, closeModal }) {
     closeModal();
   }
 
-  const { formText, title } = TEXTS.createMember;
-
   useEffect(() => {
-    if (!opened) setForm(formDefault);
-  }, [opened]);
+    if (!opened) reset();
+  }, [opened, reset]);
+
+  const { formText, title } = TEXTS.createMember;
   return (
     <Modal opened={opened}>
       <ModalTitle>{title}</ModalTitle>
-      <Form onSubmit={submit}>
-        <FormItem
-          dictionary={formText.name}
-          value={form[formText.name[0]]}
-          onChange={updateForm}
-          required
-        />
+      <Form onSubmit={handleSubmit(submit)}>
+        <FormItem dictionary={formText.name} internalRef={register} required />
         <FormItem
           dictionary={formText.budget}
-          value={form[formText.budget[0]]}
-          onChange={updateForm}
+          internalRef={register}
           type="number"
           min="0"
           required
         />
         <FormItem
           dictionary={formText.needDrink}
-          value={form[formText.needDrink[0]]}
-          onChange={updateForm}
+          internalRef={register}
           type="select"
           options={formText.needDrinkOptions}
           min="0"

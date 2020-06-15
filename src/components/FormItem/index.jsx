@@ -8,17 +8,17 @@ import { Select } from 'visual/styles/Select';
 
 export function FormItem({
   dictionary,
-  value,
   type,
-  onChange,
   as,
   rows,
   required,
   min,
   options,
+  internalRef,
 }) {
   const [id, title, placeholder] = dictionary;
   const isSelect = type === 'select';
+
   return (
     <ModalFormItem>
       <Label htmlFor={`form-${id}`}>{title}</Label>
@@ -27,20 +27,16 @@ export function FormItem({
           placeholder={placeholder}
           id={`form-${id}`}
           type={type}
-          value={value}
           as={as}
+          name={id}
           rows={rows}
-          onChange={({ target }) => onChange(id, target.value)}
           required={required}
           min={min}
+          ref={internalRef}
         />
       )}
       {isSelect && (
-        <Select
-          id={`form-${id}`}
-          onChange={({ target }) => onChange(id, target.value)}
-          value={value}
-        >
+        <Select id={`form-${id}`} ref={internalRef} name={id}>
           {options.map((option) => (
             <option key={option.key} value={option.key}>
               {option.value}
@@ -54,13 +50,12 @@ export function FormItem({
 
 FormItem.propTypes = {
   dictionary: PropTypes.arrayOf(PropTypes.string).isRequired,
-  value: PropTypes.string,
   type: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
   as: PropTypes.string,
   rows: PropTypes.string,
   required: PropTypes.bool,
   min: PropTypes.string,
+  internalRef: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
@@ -68,7 +63,6 @@ FormItem.defaultProps = {
   type: 'text',
   as: 'input',
   rows: '',
-  value: '',
   required: false,
   min: '',
   options: [],
