@@ -1,38 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from 'react';
 
 import { membersBudget } from 'logic/membersBudget';
+import { Wrapper } from 'visual/styles/Wrapper';
+import { BarbecueContext } from 'contexts/BarbecueContext';
+import { useParams } from 'react-router-dom';
 import { Header } from './Header';
 import { Members } from './Members';
 
 import { Container, Description } from './styles';
 
-export function Content({ data }) {
-  const { members, date, title, description, notes } = data;
+export function Content() {
+  const { id } = useParams();
+  const { barbecue, loaded, fetch } = useContext(BarbecueContext);
+  const { members, date, title, description, notes } = barbecue;
+
+  useEffect(() => {
+    fetch(id);
+  }, [id]);
 
   return (
-    <Container>
-      <Header
-        title={title}
-        budget={membersBudget(members)}
-        members={members.length}
-        date={date}
-      />
-      {!!description && <Description>{description}</Description>}
-      {!!notes && <Description>{notes}</Description>}
-      <Members data={members} />
-    </Container>
+    <Wrapper>
+      {loaded && (
+        <Container>
+          <Header
+            title={title}
+            budget={membersBudget(members)}
+            members={members.length}
+            date={date}
+          />
+          {!!description && <Description>{description}</Description>}
+          {!!notes && <Description>{notes}</Description>}
+          <Members data={members} />
+        </Container>
+      )}
+    </Wrapper>
   );
 }
-
-Content.propTypes = {
-  data: PropTypes.shape({
-    members: PropTypes.arrayOf(PropTypes.object),
-    date: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    notes: PropTypes.string,
-  }).isRequired,
-};
 
 export default Content;
