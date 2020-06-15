@@ -13,6 +13,7 @@ export const Container = styled.li`
 export const LeftColumn = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 export const TogglePaid = styled.button`
@@ -26,6 +27,7 @@ export const TogglePaid = styled.button`
   background-color: transparent;
   margin-right: ${pxToRem(20)};
   outline: none;
+  flex-shrink: 0;
 
   ${p => p.paid && css`
     background-color: ${COLORS.primary};
@@ -36,15 +38,22 @@ export const TogglePaid = styled.button`
   `}
 `;
 
-export const Name = styled.span`
+export const Name = styled.button`
   font-style: normal;
   font-weight: bold;
   font-size: ${pxToRem(21)};
   line-height: ${pxToRem(25)};
   color: ${COLORS.dark};
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
 `;
 
 export const Budget = styled(Name)`
+  flex-shrink: 0;
+  width: auto;
+
   ${p => p.paid && css`
     text-decoration: line-through;
   `}

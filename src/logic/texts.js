@@ -24,6 +24,7 @@ export const TEXTS = {
   },
   createMember: {
     title: 'Adicionar membro',
+    titleEdit: 'Editar membro',
     formText: {
       name: [
         'name',
@@ -46,6 +47,7 @@ export const TEXTS = {
       submit: 'Adicionar',
       cancel: 'Cancelar',
       update: 'Salvar alterações',
+      delete: 'Apagar',
     }
   },
   createBarbecue: {

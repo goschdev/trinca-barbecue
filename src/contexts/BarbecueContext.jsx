@@ -7,6 +7,8 @@ import {
   createMember,
   setMemberPaid,
   getBarbecueMembers,
+  updateMember,
+  deleteMember,
 } from 'logic/requests/barbecue';
 
 export const BarbecueContext = createContext({});
@@ -44,6 +46,20 @@ export function BarbecueProvider({ children }) {
     setMembersLoading(false);
   }
 
+  async function submitUpdateMember(data) {
+    setMembersLoading(true);
+    await updateMember({ barbecue: id, ...data });
+    await fetchMembers();
+    setMembersLoading(false);
+  }
+
+  async function submitDeleteMember(memberId) {
+    setMembersLoading(true);
+    await deleteMember({ barbecue: id, id: memberId });
+    await fetchMembers();
+    setMembersLoading(false);
+  }
+
   async function toggleMemberPaid(member, paid) {
     setMembersLoading(true);
     await setMemberPaid({ barbecue: id, member, paid });
@@ -62,6 +78,8 @@ export function BarbecueProvider({ children }) {
     fetch,
     submitCreateMember,
     toggleMemberPaid,
+    submitUpdateMember,
+    submitDeleteMember,
   };
 
   return (

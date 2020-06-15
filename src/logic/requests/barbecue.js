@@ -36,6 +36,16 @@ export async function createMember({barbecue, name, budget, needDrink}) {
   });
 }
 
+export async function updateMember({id, barbecue, name, budget, needDrink}) {
+  return await API().put(`/barbecue/${barbecue}/member/${id}`, {
+    name, budget: +budget, needDrink
+  });
+}
+
+export async function deleteMember({id, barbecue}) {
+  return await API().delete(`/barbecue/${barbecue}/member/${id}`);
+}
+
 export async function setMemberPaid({barbecue, member, paid}) {
   return await API().put(`/barbecue/${barbecue}/member/${member}`, {
     paid: !!paid,
