@@ -39,6 +39,7 @@ export const Title = styled.h1`
   width: 100%;
   text-align: center;
   padding: 70px 0 100px 0;
+  cursor: default;
 
   &, a {
     font-style: normal;
