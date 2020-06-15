@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.ul``;
+export const Container = styled.ul`
+  ${p => p.isLoading && css`
+    opacity: 0.5;
+  `}
+`;
 
 export const AddMember = styled.button``;
 

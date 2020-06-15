@@ -8,11 +8,11 @@ import { CreateMember } from './CreateMember';
 import { Container } from './styles';
 
 export function Members() {
-  const { barbecue } = useContext(BarbecueContext);
+  const { barbecue, membersLoading } = useContext(BarbecueContext);
   const { members } = barbecue;
 
   return (
-    <Container>
+    <Container isLoading={membersLoading}>
       {members.map((member) => (
         <Member key={member.id} data={member} />
       ))}

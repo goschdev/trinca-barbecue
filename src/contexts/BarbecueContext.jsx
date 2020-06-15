@@ -1,12 +1,13 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
   getBarbecue,
   createMember,
   setMemberPaid,
+  getBarbecueMembers,
 } from 'logic/requests/barbecue';
-import { useParams } from 'react-router-dom';
 
 export const BarbecueContext = createContext({});
 
@@ -22,6 +23,7 @@ export function BarbecueProvider({ children }) {
   const { id } = useParams();
   const [barbecue, setBarbecue] = useState(initialState);
   const [loaded, setLoaded] = useState(false);
+  const [membersLoading, setMembersLoading] = useState(false);
 
   const fetch = useCallback(async () => {
     setLoaded(false);
@@ -30,6 +32,11 @@ export function BarbecueProvider({ children }) {
     setLoaded(true);
   }, [id]);
 
+  async function fetchMembers() {
+    const { data } = await getBarbecueMembers(id);
+    setBarbecue({ ...barbecue, members: data });
+  }
+
   async function submitCreateMember(data) {
     setLoaded(false);
     await createMember({ barbecue: id, ...data });
@@ -37,9 +44,10 @@ export function BarbecueProvider({ children }) {
   }
 
   async function toggleMemberPaid(member, paid) {
-    setLoaded(false);
+    setMembersLoading(true);
     await setMemberPaid({ barbecue: id, member, paid });
-    fetch();
+    await fetchMembers();
+    setMembersLoading(false);
   }
 
   useEffect(() => {
@@ -49,6 +57,7 @@ export function BarbecueProvider({ children }) {
   const publicValue = {
     barbecue,
     loaded,
+    membersLoading,
     fetch,
     submitCreateMember,
     toggleMemberPaid,
