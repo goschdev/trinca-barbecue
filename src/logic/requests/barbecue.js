@@ -31,3 +31,9 @@ export async function createMember({barbecue, name, budget, needDrink}) {
     name, budget: +budget, needDrink
   });
 }
+
+export async function setMemberPaid({barbecue, member, paid}) {
+  return await API().put(`/barbecue/${barbecue}/member/${member}`, {
+    paid: !!paid,
+  });
+}

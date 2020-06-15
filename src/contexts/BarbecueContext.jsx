@@ -1,7 +1,11 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { getBarbecue, createMember } from 'logic/requests/barbecue';
+import {
+  getBarbecue,
+  createMember,
+  setMemberPaid,
+} from 'logic/requests/barbecue';
 import { useParams } from 'react-router-dom';
 
 export const BarbecueContext = createContext({});
@@ -32,11 +36,23 @@ export function BarbecueProvider({ children }) {
     fetch();
   }
 
+  async function toggleMemberPaid(member, paid) {
+    setLoaded(false);
+    await setMemberPaid({ barbecue: id, member, paid });
+    fetch();
+  }
+
   useEffect(() => {
     fetch();
   }, [fetch]);
 
-  const publicValue = { barbecue, loaded, fetch, submitCreateMember };
+  const publicValue = {
+    barbecue,
+    loaded,
+    fetch,
+    submitCreateMember,
+    toggleMemberPaid,
+  };
 
   return (
     <BarbecueContext.Provider value={publicValue}>

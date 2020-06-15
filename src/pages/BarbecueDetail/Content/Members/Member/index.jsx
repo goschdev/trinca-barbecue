@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { TEXTS } from 'logic/texts';
+import { BarbecueContext } from 'contexts/BarbecueContext';
 import { Container, LeftColumn, TogglePaid, Name, Budget } from './styles';
 
 export function Member({ data }) {
-  const { name, budget, paid } = data;
+  const { toggleMemberPaid } = useContext(BarbecueContext);
+  const { id, name, budget, paid } = data;
+
+  function togglePaid() {
+    toggleMemberPaid(id, !paid);
+  }
 
   return (
     <Container>
       <LeftColumn>
         {paid && (
-          <TogglePaid paid={paid}>{TEXTS.member.markAsNotPaid}</TogglePaid>
+          <TogglePaid onClick={togglePaid} paid={paid}>
+            {TEXTS.member.markAsNotPaid}
+          </TogglePaid>
         )}
         {!paid && (
-          <TogglePaid paid={paid}>{TEXTS.member.markAsPaid}</TogglePaid>
+          <TogglePaid onClick={togglePaid} paid={paid}>
+            {TEXTS.member.markAsPaid}
+          </TogglePaid>
         )}
         <Name>{name}</Name>
       </LeftColumn>
