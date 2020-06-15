@@ -15,4 +15,5 @@ export const Description = styled.p`
   font-size: ${pxToRem(18)};
   line-height: ${pxToRem(21)};
   color: ${COLORS.dark};
+  word-break: break-word;
 `;

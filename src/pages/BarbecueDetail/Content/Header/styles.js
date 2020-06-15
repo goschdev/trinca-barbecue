@@ -1,20 +1,37 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
 import { COLORS } from 'visual/constants';
+import { mobile, tabletDesktop } from 'visual/medias';
 import { pxToRem } from 'logic/pxToRem';
 
 export const Container = styled.header`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const LeftColumn = styled.div`
   display: grid;
+
+  ${mobile(css`
+    width: 100%;
+  `)}
 `;
 
 export const RightColumn = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
+  ${tabletDesktop(css`
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+  `)}
+
+  ${mobile(css`
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: ${pxToRem(15)};
+    margin-top: ${pxToRem(10)}
+  `)}
 `;
 
 export const Title = styled.h2`
