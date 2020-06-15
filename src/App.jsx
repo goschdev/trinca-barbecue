@@ -5,16 +5,19 @@ import { Routes } from 'components/Routes';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 import { RenderGlobalStyle } from 'components/RenderGlobalStyle';
+import { AuthProvider } from 'contexts/AuthContext';
 
 export function App() {
   return (
     <>
-      <Router>
-        <RenderGlobalStyle />
-        <Header />
-        <Routes />
-        <Footer />
-      </Router>
+      <AuthProvider>
+        <Router>
+          <RenderGlobalStyle />
+          <Header />
+          <Routes />
+          <Footer />
+        </Router>
+      </AuthProvider>
     </>
   );
 }

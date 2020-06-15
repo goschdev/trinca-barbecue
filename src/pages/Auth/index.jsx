@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Label } from 'visual/styles/Label';
 import { Input } from 'visual/styles/Input';
@@ -6,19 +6,30 @@ import { TEXTS } from 'logic/texts';
 import { Wrapper } from 'visual/styles/Wrapper';
 import { Button } from 'visual/styles/Button';
 
+import { useForm } from 'react-hook-form';
+import { AuthContext } from 'contexts/AuthContext';
 import { Container, Form, FormItem } from './styles';
 
 export function Auth() {
+  const { register, handleSubmit } = useForm();
+  const { setAuthenticated } = useContext(AuthContext);
+
+  function submit() {
+    setAuthenticated();
+  }
   return (
     <Container>
       <Wrapper>
-        <Form>
+        <Form onSubmit={handleSubmit(submit)}>
           <FormItem>
             <Label htmlFor="login">{TEXTS.auth.login}</Label>
             <Input
               id="login"
               placeholder={TEXTS.auth.loginPlaceholder}
               type="email"
+              name="login"
+              required
+              ref={register}
             />
           </FormItem>
           <FormItem>
@@ -26,7 +37,9 @@ export function Auth() {
             <Input
               id="password"
               placeholder={TEXTS.auth.passwordPlaceholder}
+              name="password"
               type="password"
+              ref={register}
             />
           </FormItem>
           <FormItem>
