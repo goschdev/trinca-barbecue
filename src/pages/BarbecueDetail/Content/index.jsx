@@ -30,7 +30,7 @@ export function Content() {
           />
           {!!description && <Description>{description}</Description>}
           {!!notes && <Description>{notes}</Description>}
-          <Members data={members} />
+          <Members />
         </Container>
       )}
     </Wrapper>
