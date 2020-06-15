@@ -12,9 +12,10 @@ import { BarbecueContext } from 'contexts/BarbecueContext';
 import { Form } from './styles';
 
 export function CreateMemberModal({ opened, closeModal }) {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
 
-  const { loaded, submitCreateMember } = useContext(BarbecueContext);
+  const { barbecue, loaded, submitCreateMember } = useContext(BarbecueContext);
+  const { suggestedBudget } = barbecue;
 
   function submit(values) {
     submitCreateMember(values);
@@ -26,8 +27,10 @@ export function CreateMemberModal({ opened, closeModal }) {
   }
 
   useEffect(() => {
+    setValue('budget', suggestedBudget);
+    setValue('needDrink', true);
     if (!opened) reset();
-  }, [opened, reset]);
+  }, [opened, reset, setValue, suggestedBudget]);
 
   const { formText, title } = TEXTS.createMember;
   return (
